@@ -34,60 +34,59 @@ import java.nio.file.Paths;
 
 public class Win32Syscalls {
 
-	static {
-		System.loadLibrary("win32syscalls");
-	}
+  static {
+    System.loadLibrary("win32syscalls");
+  }
 
-	/**
-	 * Try to detect DPI settings for the system.
-	 * 
-	 * @return The current DPI settings.
-	 */
-	public static native int detectSystemDPI();
+  /**
+   * Try to detect DPI settings for the system.
+   * 
+   * @return The current DPI settings.
+   */
+  public static native int detectSystemDPI();
 
-	private static native String nativeGetLocalAppDataFolder();
+  private static native String nativeGetLocalAppDataFolder();
 
-	private static native String nativeGetRoamingAppDataFolder();
+  private static native String nativeGetRoamingAppDataFolder();
 
-	private static native String nativeGetDocumentsFolder();
+  private static native String nativeGetDocumentsFolder();
 
-	/**
-	 * Retrieve the LocalAppData folder.
-	 * 
-	 * @return A File object for LocalAppData folder.
-	 */
-	public static File getLocalAppDataFolder() {
-		return new File(nativeGetLocalAppDataFolder());
-	}
+  /**
+   * Retrieve the LocalAppData folder.
+   * 
+   * @return A File object for LocalAppData folder.
+   */
+  public static File getLocalAppDataFolder() {
+    return new File(nativeGetLocalAppDataFolder());
+  }
 
-	/**
-	 * Retrieve the AppData folder.
-	 * 
-	 * @return A File object for AppData folder.
-	 */
-	public static File getRoamingAppDataFolder() {
-		return new File(nativeGetRoamingAppDataFolder());
-	}
+  /**
+   * Retrieve the AppData folder.
+   * 
+   * @return A File object for AppData folder.
+   */
+  public static File getRoamingAppDataFolder() {
+    return new File(nativeGetRoamingAppDataFolder());
+  }
 
-	/**
-	 * Retrieve the Documents folder.
-	 * 
-	 * @return A File object for Documents folder.
-	 */
-	public static File getDocumentsFolder() {
-		return new File(nativeGetDocumentsFolder());
-	}
+  /**
+   * Retrieve the Documents folder.
+   * 
+   * @return A File object for Documents folder.
+   */
+  public static File getDocumentsFolder() {
+    return new File(nativeGetDocumentsFolder());
+  }
 
-	/**
-	 * Retrieve the LocalCache folder. This is valid only for Windows Store
-	 * apps.
-	 * 
-	 * @param appId
-	 *            The Windows Store app ID.
-	 * @return A File object for LocalCache folder.
-	 */
-	public static File getLocalCacheFolder(String appId) {
-		String localAppData = nativeGetLocalAppDataFolder();
-		return Paths.get(localAppData, "Packages", appId, "LocalCache").toFile();
-	}
+  /**
+   * Retrieve the LocalCache folder. This is valid only for Windows Store apps.
+   * 
+   * @param appId
+   *          The Windows Store app ID.
+   * @return A File object for LocalCache folder.
+   */
+  public static File getLocalCacheFolder(String appId) {
+    String localAppData = nativeGetLocalAppDataFolder();
+    return Paths.get(localAppData, "Packages", appId, "LocalCache").toFile();
+  }
 }
