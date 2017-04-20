@@ -36,7 +36,7 @@
 
 JNIEXPORT jint JNICALL Java_cc_arduino_os_windows_Win32Syscalls_detectSystemDPI(JNIEnv *env, jclass cls) {
   if (IsWindows8Point1OrGreater()) {
-	SetProcessDpiAwareness(DPI_AWARENESS_SYSTEM_AWARE);
+    SetProcessDpiAwareness(DPI_AWARENESS_SYSTEM_AWARE);
 
     if (IsWindows10OrGreater()) {
       SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
